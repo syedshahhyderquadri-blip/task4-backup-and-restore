@@ -1,0 +1,24 @@
+-- Task 4: Oracle Database Backup & Restore
+
+-- =========================
+-- SQL*Plus Commands
+-- =========================
+
+-- Connect in SQL*Plus
+-- sqlplus system/12345@XE
+
+-- Create backup directory
+CREATE OR REPLACE DIRECTORY backup_dir AS 'C:\oracle_backup';
+
+-- Verify tables after restore
+SELECT table_name FROM user_tables;
+
+-- =========================
+-- CMD Commands (Run in Windows Command Prompt)
+-- =========================
+
+-- Backup database (Export)
+expdp system/12345@XE directory=backup_dir dumpfile=oracle_backup.dmp logfile=oracle_backup.log
+
+-- Restore database (Import)
+impdp system/12345@XE directory=backup_dir dumpfile=oracle_backup.dmp logfile=restore.log
